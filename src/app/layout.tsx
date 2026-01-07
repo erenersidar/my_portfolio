@@ -12,16 +12,58 @@ const sourceCodePro = Source_Code_Pro({
   variable: '--font-source-code-pro',
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://apply10.com";
+
 export const metadata: Metadata = {
-  title: "Sidar Erener | Portfolio",
-  description: "Portfolio of Sidar Erener, a software developer specializing in Flutter and React.",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Sidar Erener | Full-Stack Developer",
+    template: "%s | Sidar Erener",
+  },
+  description:
+    "Full-Stack Developer specializing in Flutter, React, Next.js und moderne Web-/App-Entwicklung. Verfügbar für Projekte in Deutschland.",
+  keywords: [
+    "Full-Stack Developer",
+    "Flutter Developer",
+    "React Developer",
+    "Next.js",
+    "Mobile App Development",
+    "Web Development",
+    "Software Engineer",
+    "Germany",
+    "Mülheim an der Ruhr",
+  ],
+  authors: [{ name: "Sidar Erener" }],
+  creator: "Sidar Erener",
   openGraph: {
-    title: "Sidar Erener | Portfolio",
-    description: "Portfolio of Sidar Erener, a software developer specializing in Flutter and React.",
-    url: "https://apply10.com",
-    siteName: "Sidar Erener's Portfolio",
-    locale: "en_US",
+    title: "Sidar Erener | Full-Stack Developer",
+    description:
+      "Full-Stack Developer specializing in Flutter, React, Next.js und moderne Web-/App-Entwicklung.",
+    url: siteUrl,
+    siteName: "Sidar Erener Portfolio",
+    locale: "de_DE",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Sidar Erener | Full-Stack Developer",
+    description:
+      "Full-Stack Developer specializing in Flutter, React, Next.js und moderne Web-/App-Entwicklung.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    // Google Search Console verification (add your code when available)
+    // google: "your-google-verification-code",
   },
 };
 
