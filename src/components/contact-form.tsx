@@ -18,7 +18,9 @@ import { useToast } from "@/hooks/use-toast";
 import { handleContactForm } from "@/actions/contact";
 import { Loader2, Send } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+import { Checkbox } from "./ui/checkbox";
 import { useRef, useEffect, useState } from "react";
+import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -29,6 +31,9 @@ const formSchema = z.object({
   }),
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
+  }),
+  privacyConsent: z.boolean().refine((val) => val === true, {
+    message: "You must agree to the privacy policy.",
   }),
 });
 
@@ -54,6 +59,7 @@ export default function ContactForm() {
       name: "",
       email: "",
       message: "",
+      privacyConsent: false,
     },
   });
 
@@ -189,6 +195,30 @@ export default function ContactForm() {
                     />
                   </FormControl>
                   <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="privacyConsent"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel className="text-sm font-normal">
+                      I agree to the{" "}
+                      <Link href="/datenschutz" className="underline hover:text-primary">
+                        Privacy Policy
+                      </Link>{" "}
+                      and consent to the processing of my data.
+                    </FormLabel>
+                    <FormMessage />
+                  </div>
                 </FormItem>
               )}
             />
