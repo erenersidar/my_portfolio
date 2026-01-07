@@ -18,6 +18,7 @@ import { useToast } from "@/hooks/use-toast";
 import { handleContactForm } from "@/actions/contact";
 import { Loader2, Send } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
+import { useRef, useEffect } from "react";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -29,21 +30,77 @@ const formSchema = z.object({
   message: z.string().min(10, {
     message: "Message must be at least 10 characters.",
   }),
+  "cf-turnstile-response": z.string().min(1, {
+    message: "Please complete the CAPTCHA.",
+  }),
 });
+
+declare global {
+  interface Window {
+    turnstile: {
+      render: (selector: string, options: any) => void;
+      reset: (widgetId?: string) => void;
+      getResponse: (widgetId?: string) => string;
+      remove: (widgetId?: string) => void;
+    };
+  }
+}
 
 export default function ContactForm() {
   const { toast } = useToast();
+  const turnstileRef = useRef<void | null>(null);
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
       email: "",
       message: "",
+      "cf-turnstile-response": "",
     },
   });
 
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+
+    script.onload = () => {
+      if (window.turnstile && document.getElementById("turnstile-widget")) {
+        turnstileRef.current = window.turnstile.render("#turnstile-widget", {
+          sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+          theme: "light",
+        });
+      }
+    };
+
+    return () => {
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const result = await handleContactForm(values);
+    // Get Turnstile token
+    const turnstileToken = window.turnstile?.getResponse();
+    if (!turnstileToken) {
+      toast({
+        variant: "destructive",
+        title: "CAPTCHA Error",
+        description: "Please complete the CAPTCHA verification.",
+      });
+      return;
+    }
+
+    const formData = {
+      ...values,
+      "cf-turnstile-response": turnstileToken,
+    };
+
+    const result = await handleContactForm(formData);
 
     if (result.success) {
       toast({
@@ -51,12 +108,18 @@ export default function ContactForm() {
         description: "Thank you for reaching out. I'll get back to you soon.",
       });
       form.reset();
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
     } else {
       toast({
         variant: "destructive",
         title: "Something went wrong.",
         description: result.error || "Could not send the message. Please try again.",
       });
+      if (window.turnstile) {
+        window.turnstile.reset();
+      }
     }
   }
 
@@ -108,6 +171,7 @@ export default function ContactForm() {
                 </FormItem>
               )}
             />
+            <div id="turnstile-widget" className="flex justify-center" />
             <Button type="submit" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting ? (
                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />

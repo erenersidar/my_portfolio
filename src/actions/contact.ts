@@ -2,6 +2,20 @@
 
 import { z } from "zod";
 import nodemailer from "nodemailer";
+import { rateLimit } from "@/lib/rate-limit";
+import { headers } from "next/headers";
+
+// HTML escape function to prevent XSS
+const escapeHtml = (text: string): string => {
+  const map: { [key: string]: string } = {
+    "&": "&amp;",
+    "<": "&lt;",
+    ">": "&gt;",
+    '"': "&quot;",
+    "'": "&#039;",
+  };
+  return text.replace(/[&<>"']/g, (char) => map[char]);
+};
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
@@ -21,28 +35,76 @@ const notificationEmailTemplate = (name: string, email: string, message: string)
   <hr>
   <h3>Sender Information</h3>
   <ul>
-    <li><strong>Name:</strong> ${name}</li>
-    <li><strong>Email:</strong> ${email}</li>
+    <li><strong>Name:</strong> ${escapeHtml(name)}</li>
+    <li><strong>Email:</strong> ${escapeHtml(email)}</li>
   </ul>
   <h3>Message</h3>
-  <p>${message}</p>
+  <p>${escapeHtml(message)}</p>
 `;
 
 // Simple HTML template for confirmation email
 const confirmationEmailTemplate = (name: string, siteUrl: string) => `
-  <h1>Thank You, ${name}!</h1>
+  <h1>Thank You, ${escapeHtml(name)}!</h1>
   <p>Your message has been successfully received. I appreciate you taking the time to reach out.</p>
   <p>I will review your message and get back to you as soon as possible.</p>
   <br>
-  <a href="${siteUrl}">Return to Portfolio</a>
+  <a href="${escapeHtml(siteUrl)}">Return to Portfolio</a>
   <br>
   <p>Best regards,<br>Sidar Erener</p>
 `;
 
 
 export async function handleContactForm(
-  data: z.infer<typeof contactSchema>
+  data: z.infer<typeof contactSchema> & { "cf-turnstile-response"?: string }
 ): Promise<ContactFormState> {
+  // Rate limiting: Get client IP
+  const headersList = await headers();
+  const clientIp = headersList.get("x-forwarded-for") || headersList.get("x-client-ip") || "unknown";
+
+  // Check rate limit
+  if (!rateLimit(clientIp)) {
+    return {
+      success: false,
+      error: "Too many requests. Please try again in a few moments.",
+    };
+  }
+
+  // Verify Turnstile token
+  const turnstileToken = data["cf-turnstile-response"];
+  if (!turnstileToken) {
+    return {
+      success: false,
+      error: "CAPTCHA verification failed. Please try again.",
+    };
+  }
+
+  try {
+    const turnstileResponse = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        secret: process.env.TURNSTILE_SECRET_KEY,
+        response: turnstileToken,
+      }),
+    });
+
+    const result = await turnstileResponse.json();
+    if (!result.success) {
+      return {
+        success: false,
+        error: "CAPTCHA verification failed. Please try again.",
+      };
+    }
+  } catch (error) {
+    console.error("Turnstile verification error:", error);
+    return {
+      success: false,
+      error: "Unable to verify CAPTCHA. Please try again.",
+    };
+  }
+
   const { SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS, SMTP_FROM } = process.env;
 
   if (!SMTP_HOST || !SMTP_PORT || !SMTP_USER || !SMTP_PASS || !SMTP_FROM) {
