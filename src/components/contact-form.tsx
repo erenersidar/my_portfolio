@@ -86,6 +86,8 @@ export default function ContactForm() {
   async function onSubmit(values: z.infer<typeof formSchema>) {
     // Get Turnstile token
     const turnstileToken = window.turnstile?.getResponse();
+    console.log("Turnstile token:", turnstileToken ? "✓ Present" : "✗ Missing");
+
     if (!turnstileToken) {
       toast({
         variant: "destructive",
@@ -100,7 +102,9 @@ export default function ContactForm() {
       "cf-turnstile-response": turnstileToken,
     };
 
+    console.log("Form data:", formData);
     const result = await handleContactForm(formData);
+    console.log("Contact form result:", result);
 
     if (result.success) {
       toast({
