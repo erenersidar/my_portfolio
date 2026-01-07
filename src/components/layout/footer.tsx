@@ -14,6 +14,9 @@ const Footer = () => {
           <Link href="/datenschutz" className="hover:text-primary transition-colors">
             Datenschutzerklärung
           </Link>
+          <Link href="/agb" className="hover:text-primary transition-colors">
+            AGB
+          </Link>
         </div>
         <p>&copy; {currentYear} Sidar Erener. All Rights Reserved.</p>
         <p>
