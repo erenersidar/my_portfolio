@@ -84,20 +84,20 @@ export const projects = [
     description: "A travel planning and organization application built with Flutter. It allows users to manage trips, book flights, and discover new destinations. Developed as part of intensive training at App Akademie.",
     tags: ["Flutter", "Dart", "Cloud Services", "Agile", "Scrum"],
     image: projectImages.project1,
-    githubUrl: "https://github.com/SidarAppAkademie/minimalPitch.git",
+    githubUrl: "https://github.com/erenersidar/minimalPitch",
   },
   {
     title: "Next.js & AI Portfolio Template",
     description: "A modern, responsive portfolio template built with Next.js, Tailwind CSS, and shadcn/ui. Features Genkit AI integration for dynamic profile creation from CVs.",
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Genkit", "ShadCN/UI"],
     image: projectImages.project2,
-    githubUrl: "https://github.com/SidarAppAkademie/my_portfolio.git",
+    githubUrl: "https://github.com/erenersidar/my_portfolio",
   },
   {
     title: "PAC SERVICE - Reinigungsdienste Website",
     description: "Moderne, interaktive Website für professionelle Reinigungsdienste mit intelligentem Preisrechner und Rabattsystem.",
     tags: ["React", "Vite", "Tailwind CSS"],
     image: projectImages.project3,
-    githubUrl: "https://github.com/SidarAppAkademie/pac-service-website.git",
+    githubUrl: "https://github.com/erenersidar/pac-service-website",
   },
 ];
