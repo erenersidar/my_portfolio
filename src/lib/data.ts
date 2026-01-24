@@ -111,6 +111,7 @@ export const projects = [
     tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
     image: projectImages.project4,
     githubUrl: "https://github.com/vercel/commerce",
+    demoUrl: "https://demo.vercel.store/",
   },
   {
     title: "TailAdmin Dashboard",
@@ -118,6 +119,7 @@ export const projects = [
     tags: ["Next.js", "Tailwind CSS", "TypeScript", "Dashboard"],
     image: projectImages.project5,
     githubUrl: "https://github.com/TailAdmin/free-nextjs-admin-dashboard",
+    demoUrl: "https://tailadmin-free-next.vercel.app/",
   },
   {
     title: "Twitter Clone",
@@ -125,6 +127,7 @@ export const projects = [
     tags: ["Next.js", "Firebase", "Social", "Real-time"],
     image: projectImages.project6,
     githubUrl: "https://github.com/ccrsxx/twitter-clone",
+    // No official demo, user needs to deploy
   },
   {
     title: "FreshMart Grocery Store",
@@ -132,6 +135,7 @@ export const projects = [
     tags: ["Next.js", "React", "Ecommerce", "Tailwind CSS"],
     image: projectImages.project7,
     githubUrl: "https://github.com/lucasdota/GrocerGo",
+    // No official demo found
   },
   {
     title: "Golobe Travel Agency",
@@ -139,5 +143,6 @@ export const projects = [
     tags: ["Next.js", "Fullstack", "Booking", "Travel"],
     image: projectImages.project8,
     githubUrl: "https://github.com/mojahidhasan/fullstack-nextjs-golobe-travel-agency",
+    demoUrl: "https://golob-travel-agency.vercel.app/",
   },
 ];
