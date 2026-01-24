@@ -24,6 +24,8 @@ const projectImages = {
   project4: PlaceHolderImages.find(p => p.id === 'project-4'),
   project5: PlaceHolderImages.find(p => p.id === 'project-5'),
   project6: PlaceHolderImages.find(p => p.id === 'project-6'),
+  project7: PlaceHolderImages.find(p => p.id === 'project-7'),
+  project8: PlaceHolderImages.find(p => p.id === 'project-8'),
 }
 
 export const services = [
@@ -123,5 +125,19 @@ export const projects = [
     tags: ["Next.js", "Firebase", "Social", "Real-time"],
     image: projectImages.project6,
     githubUrl: "https://github.com/ccrsxx/twitter-clone",
+  },
+  {
+    title: "FreshMart Grocery Store",
+    description: "A modern, responsive online grocery store template built with Next.js and Tailwind CSS. Features product catalog and shopping cart.",
+    tags: ["Next.js", "React", "Ecommerce", "Tailwind CSS"],
+    image: projectImages.project7,
+    githubUrl: "https://github.com/lucasdota/GrocerGo",
+  },
+  {
+    title: "Golobe Travel Agency",
+    description: "Full-stack travel booking application for flights and hotels. Built with Next.js 14, MongoDB, and Tailwind CSS.",
+    tags: ["Next.js", "Fullstack", "Booking", "Travel"],
+    image: projectImages.project8,
+    githubUrl: "https://github.com/mojahidhasan/fullstack-nextjs-golobe-travel-agency",
   },
 ];
