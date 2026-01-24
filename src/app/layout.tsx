@@ -4,6 +4,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import DotShaderAnimation from "@/components/dot-shader-animation";
+import CookieConsent from "@/components/cookie-consent";
 import "./globals.css";
 
 const sourceCodePro = Source_Code_Pro({
@@ -76,13 +77,14 @@ export default function RootLayout({
     <html lang="en" className={`dark ${sourceCodePro.variable}`}>
       <head />
       <body className="font-body antialiased">
-          <DotShaderAnimation />
-          <div className="relative z-10 flex min-h-screen flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </div>
-          <Toaster />
+        <DotShaderAnimation />
+        <div className="relative z-10 flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
+        <Toaster />
+        <CookieConsent />
       </body>
     </html>
   );
