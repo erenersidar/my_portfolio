@@ -1,12 +1,12 @@
 import { PlaceHolderImages } from "./placeholder-images";
 import React from "react";
-import { 
-  FlutterLogo, 
-  DartLogo, 
-  ReactLogo, 
-  NextJsLogo, 
-  TailwindCssLogo, 
-  FirebaseLogo, 
+import {
+  FlutterLogo,
+  DartLogo,
+  ReactLogo,
+  NextJsLogo,
+  TailwindCssLogo,
+  FirebaseLogo,
   FigmaLogo,
   GenkitLogo,
   GeminiLogo,
@@ -21,6 +21,9 @@ const projectImages = {
   project1: PlaceHolderImages.find(p => p.id === 'project-1'),
   project2: PlaceHolderImages.find(p => p.id === 'project-2'),
   project3: PlaceHolderImages.find(p => p.id === 'project-3'),
+  project4: PlaceHolderImages.find(p => p.id === 'project-4'),
+  project5: PlaceHolderImages.find(p => p.id === 'project-5'),
+  project6: PlaceHolderImages.find(p => p.id === 'project-6'),
 }
 
 export const services = [
@@ -39,12 +42,12 @@ export const services = [
     description: "Creating modern, responsive web applications using React and Next.js. I specialize in building fast, scalable front-ends with Tailwind CSS for styling and various cloud services for backend functionality.",
     icons: [
       { icon: React.createElement(ReactLogo) },
-      { icon: React.createElement(NextJsLogo, {className: "dark:invert"}) },
+      { icon: React.createElement(NextJsLogo, { className: "dark:invert" }) },
       { icon: React.createElement(TailwindCssLogo) },
       { icon: React.createElement(FirebaseLogo) },
     ],
   },
-    {
+  {
     title: "AI Integration",
     description: "Leveraging GenAI to build intelligent features, chatbots, and automated workflows. Experience with Google Genkit and Gemini models to create smart, data-driven applications.",
     icons: [
@@ -57,23 +60,23 @@ export const services = [
     title: "UX/UI Design",
     description: "Designing intuitive and engaging user interfaces. From user research and wireframing to creating mockups and interactive prototypes in Figma, I focus on user-centric design principles.",
     icons: [
-        { icon: React.createElement(FigmaLogo) }
+      { icon: React.createElement(FigmaLogo) }
     ],
   },
   {
     title: "Agile & Project Management",
     description: "Helping teams adopt agile methodologies, Clean Code principles, and efficient workflows using tools like Jira for transparent and effective project tracking.",
     icons: [
-        { icon: React.createElement(AgileLogo, {className: "dark:invert"}) },
-        { icon: React.createElement(JiraLogo) },
+      { icon: React.createElement(AgileLogo, { className: "dark:invert" }) },
+      { icon: React.createElement(JiraLogo) },
     ],
   },
   {
     title: "Technical Consultancy",
     description: "Providing expert advice on technology stacks, app architecture, and development processes. Focused on ensuring code quality, scalability, and best practices.",
     icons: [
-       { icon: React.createElement(FlutterLogo) },
-       { icon: React.createElement(NextJsLogo, {className: "dark:invert"}) },
+      { icon: React.createElement(FlutterLogo) },
+      { icon: React.createElement(NextJsLogo, { className: "dark:invert" }) },
     ]
   }
 ];
@@ -99,5 +102,26 @@ export const projects = [
     tags: ["React", "Vite", "Tailwind CSS"],
     image: projectImages.project3,
     githubUrl: "https://github.com/erenersidar/pac-service-website",
+  },
+  {
+    title: "Next.js Commerce Demo",
+    description: "A high-performance, open-source e-commerce storefront built with Next.js, React, and Tailwind CSS. Features cutting-edge web capabilities.",
+    tags: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
+    image: projectImages.project4,
+    githubUrl: "https://github.com/vercel/commerce",
+  },
+  {
+    title: "TailAdmin Dashboard",
+    description: "A comprehensive admin dashboard template featuring data visualization, charts, and table management components.",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "Dashboard"],
+    image: projectImages.project5,
+    githubUrl: "https://github.com/TailAdmin/free-nextjs-admin-dashboard",
+  },
+  {
+    title: "Twitter Clone",
+    description: "A fully functional social media application clone with real-time updates, user authentication, and social interactions.",
+    tags: ["Next.js", "Firebase", "Social", "Real-time"],
+    image: projectImages.project6,
+    githubUrl: "https://github.com/ccrsxx/twitter-clone",
   },
 ];

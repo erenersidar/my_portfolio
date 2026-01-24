@@ -17,6 +17,24 @@
       "description": "A modern and clean office space, representing a professional cleaning service.",
       "imageUrl": "https://images.unsplash.com/photo-1524758631624-e2822e304c36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxjbGVhbiUyMG9mZmljZXxlbnwwfHx8fDE3NjIxNzI3NTR8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "clean office"
+    },
+    {
+      "id": "project-4",
+      "description": "Modern e-commerce dashboard interface showing analytics and products",
+      "imageUrl": "https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxlY29tbWVyY2V8ZW58MHx8fHwxNzYyMTcyODMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "ecommerce dashboard"
+    },
+    {
+      "id": "project-5",
+      "description": "Sleek dark mode admin dashboard with charts and data tables",
+      "imageUrl": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxkYXNoYm9hcmR8ZW58MHx8fHwxNzYyMTcyODMxfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "admin dashboard"
+    },
+    {
+      "id": "project-6",
+      "description": "Mobile social media application interface concept",
+      "imageUrl": "https://images.unsplash.com/photo-1611162617474-5b21e879e113?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxzb2NpYWwlMjBtZWRpYSUyMGFwcHxlbnwwfHx8fDE3NjIxNzI4MzF8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "social media app"
     }
   ]
 }
