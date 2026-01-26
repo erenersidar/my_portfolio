@@ -25,8 +25,8 @@ type Project = {
     description: string;
     imageHint: string;
   };
-  githubUrl: string;
-  demoUrl?: string; // Optional live demo link
+  githubUrl?: string;
+  demoUrl?: string;
 };
 
 interface ProjectCarouselProps {
@@ -195,12 +195,14 @@ export const ProjectCarousel = ({
                     </Link>
                   </Button>
                 )}
-                <Button variant="outline" size="sm" asChild>
-                  <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                    <Github className="mr-2 h-4 w-4" />
-                    GitHub
-                  </Link>
-                </Button>
+                {project.githubUrl && (
+                  <Button variant="outline" size="sm" asChild>
+                    <Link href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="mr-2 h-4 w-4" />
+                      GitHub
+                    </Link>
+                  </Button>
+                )}
               </CardFooter>
             </Card>
           </motion.div>
