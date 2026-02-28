@@ -17,7 +17,30 @@ A sophisticated, performance-optimized portfolio website built with cutting-edge
 - **Interactive Interface:** A dynamic background animation that responds to mouse movement.
 - **Fully Customizable:** Structured for easily adding your own projects, services, and information.
 
-## 🛠️ Technologies Used
+## � Featured Projects & Demos
+
+The portfolio includes several robust demonstration projects that showcase full-stack capabilities, modern web design, and complex application logic:
+
+- **Next.js Commerce Demo**: A high-performance, open-source e-commerce storefront.
+  - *Features*: Shopping cart, product catalog, responsive design, optimized performance.
+  - *Tech Stack*: Next.js, React, TypeScript, Tailwind CSS
+- **TailAdmin Dashboard**: A comprehensive admin dashboard template.
+  - *Features*: Data visualization, charts, table management, complex UI components.
+  - *Tech Stack*: Next.js, Tailwind CSS, TypeScript
+- **Twitter Clone**: A fully functional social media application clone.
+  - *Features*: Real-time updates, user authentication, social interactions (tweets, likes).
+  - *Tech Stack*: Next.js, Firebase, Tailwind CSS
+- **FreshMart Grocery Store**: A modern online grocery store template.
+  - *Features*: Product categories, shopping cart interface, mobile-first design.
+  - *Tech Stack*: Next.js, React, Tailwind CSS
+- **Golobe Travel Agency**: Full-stack travel booking application.
+  - *Features*: Flight and hotel search, booking management, user accounts.
+  - *Tech Stack*: Next.js 14, MongoDB, Tailwind CSS
+- **PAC SERVICE - Reinigungsdienste**: Interactive website for professional cleaning services.
+  - *Features*: Intelligent price calculator, discount system, lead generation.
+  - *Tech Stack*: React, Vite, Tailwind CSS
+
+## �🛠️ Technologies Used
 
 - **Framework:** [Next.js](https://nextjs.org/)
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
